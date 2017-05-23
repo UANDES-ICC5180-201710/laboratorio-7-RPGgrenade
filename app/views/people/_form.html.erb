@@ -1,4 +1,4 @@
-<% form_params = [person] if local_assigns[:form_params].nil? %>
+<% form_params = [Person.new] if local_assigns[:form_params].nil? %>
 <%= form_for(*form_params) do |f| %>
 
     <div class="field form-group">

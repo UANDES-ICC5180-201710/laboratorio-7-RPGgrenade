@@ -1,22 +1,16 @@
-<%= form_for([course, enrollment]) do |f| %>
-  <% if enrollment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
+<% form_params = [course] if local_assigns[:form_params].nil? %>
+<%= form_for(*form_params) do |f| %>
+  <h3>
+    <%= course %>
+     Course
+  </h3>
 
-      <ul>
-      <% enrollment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :student_id %>
-    <%= f.select :student, options_for_select(course.students.all.map{|s|[s.to_s, s.id]}) %>
+    <%= f.select :students, options_for_select(course.students.all.map{|s|[s.to_s, s.id]}) %>
   </div>
 
-  <div class="actions">
+  <div class="form-group actions">
     <%= f.submit %>
   </div>
 <% end %>
